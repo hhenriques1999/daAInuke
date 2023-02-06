@@ -1,0 +1,31 @@
+function nukeAI() {
+    let removedContent = [];
+    document.querySelectorAll("a[data-username]").forEach(item => {
+        let itemAttr = item.getAttribute("data-username");
+        if (itemAttr.toLowerCase().includes("aiart") || itemAttr.includes("AI")) {
+            console.log("AI Artist Detected:", itemAttr);
+            let parentElem = parentize(item); // Defaults applied
+            if (parentElem != null || parentElem != undefined) {
+                console.log("Removing parent for AI Artist", itemAttr);
+                removedContent.push(parentElem);
+                parentElem.remove();
+            }
+        }
+    });
+    if (removedContent.length != 0) {
+        return removedContent;
+    }
+}
+
+// Get the parent, up to a certain amount (6 is good)
+function parentize(item, amount = 6) {
+    let temp = item;
+    for (let i = 0; i < amount; i++) {
+        temp = temp.parentElement;
+    }
+    return temp;
+}
+
+window.addEventListener('wheel', function () {
+    console.log(nukeAI());
+});
