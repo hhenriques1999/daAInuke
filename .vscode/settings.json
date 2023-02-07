@@ -1,5 +1,7 @@
 {
     "conventionalCommits.scopes": [
-        "comments"
+        "comments",
+        "logging",
+        "vscode"
     ]
 }
