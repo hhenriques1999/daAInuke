@@ -23,7 +23,7 @@ function nukeAIsubmissionTitle(log = false) {
     let removedContent = [];
     document.querySelectorAll("img[alt]").forEach(item => {
         let itemAttr = item.getAttribute("alt");
-        if (itemAttr.toLowerCase().includes("ai art") || itemAttr.includes("AI") || itemAttr.toLowerCase().includes("DreamUp")) {
+        if (itemAttr.toLowerCase().includes("ai art") || itemAttr.includes("AI") || itemAttr.toLowerCase().includes("DreamUp") || itemAttr.toLowerCase().includes("Diffusion")) {
             console.log("AI Submission Title Detected:", itemAttr);
             removedContent.push(itemAttr);
             item.remove();
