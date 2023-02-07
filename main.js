@@ -3,7 +3,7 @@ function nukeAIartistName(log = false) {
     let removedContent = [];
     document.querySelectorAll("a[data-username]").forEach(item => {
         let itemAttr = item.getAttribute("data-username");
-        if (itemAttr.toLowerCase().includes("aiart") || itemAttr.includes("AI")) {
+        if (itemAttr.toLowerCase().includes("aiart") || itemAttr.includes("AI") || itemAttr.includes("Ai")) {
             console.log("AI Artist Detected:", itemAttr);
             let parentElem = getParent(item); // Defaults applied
             if (parentElem != null || parentElem != undefined) {
