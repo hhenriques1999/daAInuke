@@ -6,3 +6,6 @@ Trickery using querySelector and some "smart" logic
 
 # Issues
 It may remove false positives, there's not much I can do and there are holes where images would be...
+
+# Usage
+Paste it on the developer console log of your favorite web browser
