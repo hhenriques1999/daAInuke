@@ -27,7 +27,7 @@ function nukeAIsubmissionTitle(log = false) {
     let uuidRegex = /^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$/; // Ironically used ChatGPT cause I can't do REGEX lol
     let uuidRegex2 = /^[a-f0-9]{32}$/
     let lowercaseMatches = ["ai art", "dreamup", "diffusion"]
-    let regularCaseMatches = ["AI"]
+    let regularCaseMatches = ["AI", "Ai "]
 
     document.querySelectorAll("img[alt]").forEach(item => {
         let itemAttr = item.getAttribute("alt");
