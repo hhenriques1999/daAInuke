@@ -3,9 +3,11 @@ function nukeAIartistName(log = false) {
     let removedContent = [];
     document.querySelectorAll("a[data-username]").forEach(item => {
         let itemAttr = item.getAttribute("data-username");
+
         if (itemAttr.toLowerCase().includes("aiart") || itemAttr.includes("AI") || itemAttr.includes("Ai")) {
             console.log("AI Artist Detected:", itemAttr);
             let parentElem = getParent(item); // Defaults applied
+
             if (parentElem != null || parentElem != undefined) {
                 console.log("Removing parent for AI Artist", itemAttr);
                 removedContent.push(itemAttr);
@@ -13,6 +15,7 @@ function nukeAIartistName(log = false) {
             }
         }
     });
+
     if (removedContent.length != 0 && log) {
         console.log(removedContent);
     }
@@ -22,17 +25,47 @@ function nukeAIartistName(log = false) {
 function nukeAIsubmissionTitle(log = false) {
     let removedContent = [];
     let uuidRegex = /^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$/; // Ironically used ChatGPT cause I can't do REGEX lol
+    let uuidRegex2 = /^[a-f0-9]{32}$/
+    let lowercaseMatches = ["ai art", "dreamup", "diffusion"]
+    let regularCaseMatches = ["AI"]
+
     document.querySelectorAll("img[alt]").forEach(item => {
         let itemAttr = item.getAttribute("alt");
-        if (itemAttr.toLowerCase().includes("ai art") || itemAttr.includes("AI") || itemAttr.toLowerCase().includes("dreamup") || itemAttr.toLowerCase().includes("diffusion") || uuidRegex.test(itemAttr)) {
-            console.log("AI Submission Title Detected:", itemAttr);
-            removedContent.push(itemAttr);
-            item.remove();
+        let lowercaseAttr = itemAttr.toLowerCase();
+
+        lowercaseMatches.forEach(match => {
+            if (lowercaseAttr.includes(match)) {
+                nukeByTitle(itemAttr, removedContent, item);
+            }
+        });
+
+        regularCaseMatches.forEach(match => {
+            if (itemAttr.includes(match)) {
+                nukeByTitle(itemAttr, removedContent, item);
+            }
+        });
+
+        if (uuidRegex.test(itemAttr)) {
+            nukeByTitle(itemAttr, removedContent, item);
         }
+
+        if (uuidRegex2.test(itemAttr)) {
+            console.log("Potential SPICE from uuid...", itemAttr);
+            nukeByTitle(itemAttr, removedContent, item);
+        }
+
     });
+
     if (removedContent.length != 0 && log) {
         console.log(removedContent);
     }
+}
+
+// Helper function for nuking submissions based on title
+function nukeByTitle(itemAttr, removedContent, item) {
+    console.log("AI Submission Title Detected:", itemAttr);
+    removedContent.push(itemAttr);
+    item.remove();
 }
 
 // Get the parent, up to a certain amount (9 is good)
