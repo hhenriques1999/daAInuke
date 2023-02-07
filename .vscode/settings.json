@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "comments",
         "logging",
-        "vscode"
+        "vscode",
+        "refactor"
     ]
 }
