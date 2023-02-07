@@ -63,9 +63,10 @@ function nukeAIsubmissionTitle(log = false) {
 
 // Helper function for nuking submissions based on title
 function nukeByTitle(itemAttr, removedContent, item) {
+    let parentElem = getParent(item, 3);
     console.log("AI Submission Title Detected:", itemAttr);
     removedContent.push(itemAttr);
-    item.remove();
+    parentElem.remove();
 }
 
 // Get the parent, up to a certain amount (9 is good)
