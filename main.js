@@ -21,9 +21,10 @@ function nukeAIartistName(log = false) {
 // This functions removes the art preview based on the submission title
 function nukeAIsubmissionTitle(log = false) {
     let removedContent = [];
+    let uuidRegex = /^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$/; // Ironically used ChatGPT cause I can't do REGEX lol
     document.querySelectorAll("img[alt]").forEach(item => {
         let itemAttr = item.getAttribute("alt");
-        if (itemAttr.toLowerCase().includes("ai art") || itemAttr.includes("AI") || itemAttr.toLowerCase().includes("dreamup") || itemAttr.toLowerCase().includes("diffusion")) {
+        if (itemAttr.toLowerCase().includes("ai art") || itemAttr.includes("AI") || itemAttr.toLowerCase().includes("dreamup") || itemAttr.toLowerCase().includes("diffusion") || uuidRegex.test(itemAttr)) {
             console.log("AI Submission Title Detected:", itemAttr);
             removedContent.push(itemAttr);
             item.remove();
