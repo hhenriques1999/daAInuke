@@ -1,4 +1,5 @@
 // This function removes the art preview based on the AI artist's name
+function nukeAIartistName(log=false) {
     let removedContent = [];
     document.querySelectorAll("a[data-username]").forEach(item => {
         let itemAttr = item.getAttribute("data-username");
@@ -12,13 +13,13 @@
             }
         }
     });
-    if (removedContent.length != 0) {
-        return removedContent;
+    if (removedContent.length != 0 && log) {
+        console.log(removedContent);
     }
 }
 
 // Get the parent, up to a certain amount (9 is good)
-function parentize(item, amount = 6) {
+function parentize(item, amount = 9) {
     let temp = item;
     for (let i = 0; i < amount; i++) {
         temp = temp.parentElement;
@@ -28,5 +29,5 @@ function parentize(item, amount = 6) {
 
 // Set the main event listener on the mouse wheel
 window.addEventListener('wheel', function () {
-    console.log(nukeAI());
+    nukeAIartistName(true);
 });
