@@ -4,6 +4,7 @@
         "logging",
         "vscode",
         "refactor",
-        "nuking"
+        "nuking",
+        "readme"
     ]
 }
