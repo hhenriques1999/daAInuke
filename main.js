@@ -18,6 +18,7 @@ function nukeAIartistName(log = false) {
     }
 }
 
+// This functions removes the art preview based on the submission title
 function nukeAIsubmissionTitle(log = false) {
     let removedContent = [];
     document.querySelectorAll("img[alt]").forEach(item => {
