@@ -8,7 +8,7 @@ function nukeAIartistName(log = false) {
             let parentElem = getParent(item); // Defaults applied
             if (parentElem != null || parentElem != undefined) {
                 console.log("Removing parent for AI Artist", itemAttr);
-                removedContent.push(parentElem);
+                removedContent.push(itemAttr);
                 parentElem.remove();
             }
         }
