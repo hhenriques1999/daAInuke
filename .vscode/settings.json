@@ -3,6 +3,7 @@
         "comments",
         "logging",
         "vscode",
-        "refactor"
+        "refactor",
+        "nuking"
     ]
 }

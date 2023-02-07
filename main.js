@@ -18,6 +18,21 @@ function nukeAIartistName(log = false) {
     }
 }
 
+function nukeAIsubmissionTitle(log = false) {
+    let removedContent = [];
+    document.querySelectorAll("img[alt]").forEach(item => {
+        let itemAttr = item.getAttribute("alt");
+        if (itemAttr.toLowerCase().includes("ai art") || itemAttr.includes("AI")) {
+            console.log("AI Submission Title Detected:", itemAttr);
+            removedContent.push(itemAttr);
+            item.remove();
+        }
+    });
+    if (removedContent.length != 0 && log) {
+        console.log(removedContent);
+    }
+}
+
 // Get the parent, up to a certain amount (9 is good)
 function getParent(item, amount = 9) {
     let temp = item;
@@ -30,4 +45,5 @@ function getParent(item, amount = 9) {
 // Set the main event listener on the mouse wheel
 window.addEventListener('wheel', function () {
     nukeAIartistName(true);
+    nukeAIsubmissionTitle(true);
 });
