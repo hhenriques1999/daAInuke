@@ -24,10 +24,10 @@ function nukeAIartistName(log = false) {
 // This functions removes the art preview based on the submission title
 function nukeAIsubmissionTitle(log = false) {
     let removedContent = [];
-    let uuidRegex = /^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$/; // Ironically used ChatGPT cause I can't do REGEX lol
-    let uuidRegex2 = /^[a-f0-9]{32}$/
-    let lowercaseMatches = ["ai art", "dreamup", "diffusion"]
-    let regularCaseMatches = ["AI", "Ai "]
+    let uuidRegexList = [/^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$/, /^[a-f0-9]{32}$/, /\d{5}-\d{10}$/];
+
+    let lowercaseMatches = ["ai art", "dreamup", "diffusion"];
+    let regularCaseMatches = ["AI", "Ai "];
 
     document.querySelectorAll("img[alt]").forEach(item => {
         let itemAttr = item.getAttribute("alt");
@@ -45,14 +45,11 @@ function nukeAIsubmissionTitle(log = false) {
             }
         });
 
-        if (uuidRegex.test(itemAttr)) {
-            nukeByTitle(itemAttr, removedContent, item);
-        }
-
-        if (uuidRegex2.test(itemAttr)) {
-            console.log("Potential SPICE from uuid...", itemAttr);
-            nukeByTitle(itemAttr, removedContent, item);
-        }
+        uuidRegexList.forEach(regex => {
+            if (regex.test(itemAttr)) {
+                nukeByTitle(itemAttr, removedContent, item);
+            }
+        });
 
     });
 
