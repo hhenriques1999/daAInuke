@@ -13,12 +13,20 @@ function nukeAIbyArtistName(log = false) {
             */
 
             const specialStrings = ["AI", "Ai"]
-            const AIartistList = ['TinyPasta', 'mortalifical', 'Adellanuki', 'idlekairos','T-N-C','legendaryroller','pizzaiolo1977','The-PuddingKing', 'Robo10ND2', 'DigitalSummers', "Nathan477", "in-the-mind-of-ai", "aiARTshowcase", "FakeArtistUsingAI", "dyonix01", "torakun14", "artforagame", "sgjoelface"]
-            const AIfilters = specialStrings.concat(AIartistList); // TODO: Turn into json to be parsed
+            const AIartistList = ['TinyPasta', 'mortalifical', 'Adellanuki', 'idlekairos','T-N-C','RDigitalArtist','legendaryroller','pizzaiolo1977','The-PuddingKing', 'Robo10ND2', 'DigitalSummers', "Nathan477", "in-the-mind-of-ai", "aiARTshowcase", "FakeArtistUsingAI", "dyonix01", "torakun14", "artforagame", "sgjoelface"]
 
-            AIfilters.forEach(filterName => {
-                if (itemAttr.includes(filterName)) {
+            AIartistList.forEach(filterName => {
+                if (itemAttr.toLowerCase().includes(filterName.toLowerCase())) {
                     console.log(`AI Artist or Filter ${filterName} detected. Nuking...`);
+                    removedContent.push(itemAttr);
+                    if (parentElem !== null) {
+                        parentElem.remove();
+                    }
+                }
+            });
+
+            specialStrings.forEach(string => {
+                if (itemAttr.includes(string)) {
                     removedContent.push(itemAttr);
                     if (parentElem !== null) {
                         parentElem.remove();
