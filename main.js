@@ -117,6 +117,6 @@ function getParent(item, amount = 9) {
 
 // Set the main event listener on the mouse wheel
 window.addEventListener('wheel', function () {
-    nukeAIbyArtistName(true);
-    nukeAIsubmissionTitle(true);
+    nukeAIbyArtistName(false);
+    nukeAIsubmissionTitle(false);
 });
