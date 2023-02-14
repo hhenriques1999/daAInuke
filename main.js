@@ -13,7 +13,7 @@ function nukeAIbyArtistName(log = false) {
             */
 
             const specialStrings = ["AI", "Ai"]
-            const AIartistList = ['TinyPasta']
+            const AIartistList = ['TinyPasta', 'mortalifical', 'Adellanuki', 'idlekairos','T-N-C','legendaryroller','pizzaiolo1977','The-PuddingKing', 'Robo10ND2', 'DigitalSummers', "Nathan477", "in-the-mind-of-ai", "aiARTshowcase", "FakeArtistUsingAI", "dyonix01", "torakun14", "artforagame", "sgjoelface"]
             const AIfilters = specialStrings.concat(AIartistList); // TODO: Turn into json to be parsed
 
             AIfilters.forEach(filterName => {
