@@ -1,17 +1,41 @@
 // This function removes the art preview based on the AI artist's name
-function nukeAIartistName(log = false) {
+function nukeAIbyArtistName(log = false) {
     let removedContent = [];
     document.querySelectorAll("a[data-username]").forEach(item => {
         let itemAttr = item.getAttribute("data-username");
+        if (item !== null && item !== undefined) {
+            let parentElem = getParent(item);
 
-        if (itemAttr.toLowerCase().includes("aiart") || itemAttr.includes("AI") || itemAttr.includes("Ai")) {
-            console.log("AI Artist Detected:", itemAttr);
-            let parentElem = getParent(item); // Defaults applied
+            /*  
+                List of (to be believed) AI Artists and filters. 
+                I apologize if you're in that list unfairly.
+                I went by the AI Art category/own criteria (aka pulled it out of my *ss) 
+            */
 
-            if (parentElem != null || parentElem != undefined) {
-                console.log("Removing parent for AI Artist", itemAttr);
-                removedContent.push(itemAttr);
-                parentElem.remove();
+            const specialStrings = ["AI", "Ai"]
+            const AIartistList = ['TinyPasta']
+            const AIfilters = specialStrings.concat(AIartistList); // TODO: Turn into json to be parsed
+
+            AIfilters.forEach(filterName => {
+                if (itemAttr.includes(filterName)) {
+                    console.log(`AI Artist or Filter ${filterName} detected. Nuking...`);
+                    removedContent.push(itemAttr);
+                    if (parentElem !== null) {
+                        parentElem.remove();
+                    }
+                }
+            });
+
+            // Lowercase Situations Only
+            if (itemAttr.toLowerCase().includes("aiart") || itemAttr.includes("AI") || itemAttr.includes("Ai")) {
+                console.log("AI Artist Detected:", itemAttr);
+                if (parentElem != null || parentElem != undefined) {
+                    console.log("Removing parent for AI Artist", itemAttr);
+                    removedContent.push(itemAttr);
+                    if (parentElem !== null) {
+                        parentElem.remove();
+                    }
+                }
             }
         }
     });
@@ -60,23 +84,31 @@ function nukeAIsubmissionTitle(log = false) {
 
 // Helper function for nuking submissions based on title
 function nukeByTitle(itemAttr, removedContent, item) {
-    let parentElem = getParent(item, 3);
-    console.log("AI Submission Title Detected:", itemAttr);
-    removedContent.push(itemAttr);
-    parentElem.remove();
+    if (item !== null && item !== undefined) {
+        let parentElem = getParent(item, 3);
+        console.log("AI Submission Title Detected:", itemAttr);
+        removedContent.push(itemAttr);
+        if (parentElem !== null) {
+            parentElem.remove();
+        }
+    }
 }
 
 // Get the parent, up to a certain amount (9 is good)
 function getParent(item, amount = 9) {
     let temp = item;
     for (let i = 0; i < amount; i++) {
-        temp = temp.parentElement;
+        if (temp.parentElement !== null) {
+            temp = temp.parentElement;
+        } else {
+            return null;
+        }
     }
     return temp;
 }
 
 // Set the main event listener on the mouse wheel
 window.addEventListener('wheel', function () {
-    nukeAIartistName(true);
+    nukeAIbyArtistName(true);
     nukeAIsubmissionTitle(true);
 });
