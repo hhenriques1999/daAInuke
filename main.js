@@ -13,7 +13,7 @@ function nukeAIbyArtistName(log = false) {
             */
 
             const specialStrings = ["AI", "Ai"]
-            const AIartistList = ['TinyPasta', 'mortalifical', 'Adellanuki', 'idlekairos','T-N-C','RDigitalArtist','legendaryroller','pizzaiolo1977','The-PuddingKing', 'Robo10ND2', 'DigitalSummers', "Nathan477", "in-the-mind-of-ai", "aiARTshowcase", "FakeArtistUsingAI", "dyonix01", "torakun14", "artforagame", "sgjoelface"]
+            const AIartistList = ['infinite-sequence', 'DWBY', 'Sangued', 'piritipany', 'ProGamerGov', 'miss-hp', 'seedmole', 'kosu811', 'TinyPasta', 'mortalifical', 'Adellanuki', 'idlekairos', 'T-N-C', 'RDigitalArtist', 'legendaryroller', 'pizzaiolo1977', 'The-PuddingKing', 'Robo10ND2', 'DigitalSummers', "Nathan477", "in-the-mind-of-ai", "aiARTshowcase", "FakeArtistUsingAI", "dyonix01", "torakun14", "artforagame", "sgjoelface"]
 
             AIartistList.forEach(filterName => {
                 if (itemAttr.toLowerCase().includes(filterName.toLowerCase())) {
@@ -56,10 +56,10 @@ function nukeAIbyArtistName(log = false) {
 // This functions removes the art preview based on the submission title
 function nukeAIsubmissionTitle(log = false) {
     let removedContent = [];
-    let uuidRegexList = [/^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$/, /^[a-f0-9]{32}$/, /\d{5}-\d{10}$/];
+    let uuidRegexList = [/^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$/, /^[a-f0-9]{32}$/, /\d{5}-\d{10}$/, /^MJ-\d+$/];
 
     let lowercaseMatches = ["ai art", "dreamup", "diffusion"];
-    let regularCaseMatches = ["AI", "Ai "];
+    let regularCaseMatches = ["AI", "Ai ", "A.I"];
 
     document.querySelectorAll("img[alt]").forEach(item => {
         let itemAttr = item.getAttribute("alt");
