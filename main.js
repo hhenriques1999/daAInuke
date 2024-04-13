@@ -1,4 +1,43 @@
 // This function removes the art preview based on the AI artist's name
+
+const AIartistList = [
+    'infinite-sequence', 
+    'DWBY', 
+    'Sangued', 
+    'piritipany', 
+    'ProGamerGov', 
+    'miss-hp', 
+    'seedmole', 
+    'kosu811', 
+    'TinyPasta', 
+    'mortalifical', 
+    'Adellanuki', 
+    'idlekairos', 
+    'T-N-C', 
+    'RDigitalArtist', 
+    'legendaryroller', 
+    'pizzaiolo1977', 
+    'The-PuddingKing', 
+    'Robo10ND2', 
+    'DigitalSummers', 
+    "Nathan477", 
+    "in-the-mind-of-ai", 
+    "aiARTshowcase", 
+    "FakeArtistUsingAI", 
+    "dyonix01", 
+    "torakun14", 
+    "artforagame", 
+    "sgjoelface",
+    "Baileyarthead",
+    "devilo4ek",
+    "ArtisticAIArtGalaxy",
+    "AIadoptions",
+    "LyebethD",
+    "InkImagine",
+    "BNJacob",
+    "AiAdoptablesPalace"
+];
+
 function nukeAIbyArtistName(log = false) {
     let removedContent = [];
     document.querySelectorAll("a[data-username]").forEach(item => {
@@ -13,7 +52,8 @@ function nukeAIbyArtistName(log = false) {
             */
 
             const specialStrings = ["AI", "Ai"]
-            const AIartistList = ['infinite-sequence', 'DWBY', 'Sangued', 'piritipany', 'ProGamerGov', 'miss-hp', 'seedmole', 'kosu811', 'TinyPasta', 'mortalifical', 'Adellanuki', 'idlekairos', 'T-N-C', 'RDigitalArtist', 'legendaryroller', 'pizzaiolo1977', 'The-PuddingKing', 'Robo10ND2', 'DigitalSummers', "Nathan477", "in-the-mind-of-ai", "aiARTshowcase", "FakeArtistUsingAI", "dyonix01", "torakun14", "artforagame", "sgjoelface"]
+            
+           
 
             AIartistList.forEach(filterName => {
                 if (itemAttr.toLowerCase().includes(filterName.toLowerCase())) {
@@ -45,6 +85,7 @@ function nukeAIbyArtistName(log = false) {
                     }
                 }
             }
+
         }
     });
 
@@ -104,15 +145,10 @@ function nukeByTitle(itemAttr, removedContent, item) {
 
 // Get the parent, up to a certain amount (9 is good)
 function getParent(item, amount = 9) {
-    let temp = item;
-    for (let i = 0; i < amount; i++) {
-        if (temp.parentElement !== null) {
-            temp = temp.parentElement;
-        } else {
-            return null;
-        }
+    for (let i = 0; i < amount && item.parentElement !== null; i++) {
+        item = item.parentElement;
     }
-    return temp;
+    return item.parentElement !== null ? item : null;
 }
 
 // Set the main event listener on the mouse wheel
